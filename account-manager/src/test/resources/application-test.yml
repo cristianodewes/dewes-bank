@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-springboot-accountmanager
+  main:
+    banner-mode: 'OFF'
+  jackson:
+    mapper:
+      accept_case_insensitive_properties: true
+    serialization:
+      write_dates_as_timestamps: false
+  #  jmx:
+  #    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS ACCOUNT_MANAGER\;SET SCHEMA ACCOUNT_MANAGER;
+    username: sa
+    password:
+    driverClassName: org.h2.Driver

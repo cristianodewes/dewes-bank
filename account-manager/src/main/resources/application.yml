@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-springboot-accountmanager
+  main:
+    banner-mode: 'OFF'
+  jackson:
+    mapper:
+      accept_case_insensitive_properties: true
+    serialization:
+      write_dates_as_timestamps: false
+#  jmx:
+#    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/bank_account
+    username: root
+    password: admin
+    driverClassName: com.mysql.cj.jdbc.Driver
