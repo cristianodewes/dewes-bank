@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package dewes.antonio.cristiano.grpc;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "dewes.antonio.cristiano.gen.proto";
+option java_multiple_files = true;
+
+message DecimalValue {
+  uint32 scale = 1;
+  uint32 precision = 2;
+  bytes value = 3;
+}
+
+enum AccountType {
+  ACCOUNT_TYPE_UNSPECIFIED = 0;
+  SAVINGS_ACCOUNT = 1;
+  CHECKING_ACCOUNT = 2;
+  INVESTMENT_ACCOUNT = 3;
+}
+
+message AccountOwnerRequest {
+  string name = 1;
+  string cpf = 2;
+  string email = 3;
+  string cellPhoneNumber = 4;
+}
+
+message AccountOwnerResponse {
+  uint64 id = 1;
+  string name = 2;
+  string cpf = 3;
+  string email = 4;
+  string cellPhoneNumber = 5;
+  google.protobuf.Timestamp insertedDate = 8;
+  google.protobuf.Timestamp lastUpdatedDate = 9;
+}
+
+message AccountRequest {
+  AccountOwnerRequest accountOwner = 1;
+  AccountType accountType = 2;
+  uint64 agency = 3;
+  string password = 4;
+}
+
+message AccountResponse {
+  uint64 id = 1;
+  AccountOwnerResponse accountOwner = 2;
+  AccountType accountType = 3;
+  uint64 number = 4;
+  uint64 agency = 5;
+  DecimalValue amount = 6;
+  google.protobuf.Timestamp createdDate = 7;
+  google.protobuf.Timestamp lasUpdatedDate = 8;
+  google.protobuf.Timestamp fishedDate = 9;
+  bool active = 10;
+}
+
+service AccountManagerService {
+  rpc createAccount (AccountRequest) returns (AccountResponse);
+}

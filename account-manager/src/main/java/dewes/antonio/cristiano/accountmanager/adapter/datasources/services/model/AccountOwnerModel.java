@@ -5,8 +5,8 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "BANK_USER")
-public class UserModel {
+@Table(name = "ACCOUNT_OWNER")
+public class AccountOwnerModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,10 +20,6 @@ public class UserModel {
     private String email;
     @Column(name = "CELL_PHONE_NUMBER", unique = true, nullable = false)
     private String cellPhoneNumber;
-    @Column(name = "PASSWORD", nullable = false)
-    private String password;
-    @Column(name = "IS_ACTIVE", nullable = false)
-    private Boolean isActive;
     @Column(name = "INSERTED_DATE", nullable = false, updatable = false)
     private ZonedDateTime insertedDate;
     @Column(name = "LAST_UPDATED_DATE")
@@ -33,7 +29,7 @@ public class UserModel {
         return id;
     }
 
-    public UserModel setId(Long id) {
+    public AccountOwnerModel setId(Long id) {
         this.id = id;
         return this;
     }
@@ -42,7 +38,7 @@ public class UserModel {
         return name;
     }
 
-    public UserModel setName(String name) {
+    public AccountOwnerModel setName(String name) {
         this.name = name;
         return this;
     }
@@ -51,7 +47,7 @@ public class UserModel {
         return cpf;
     }
 
-    public UserModel setCpf(String cpf) {
+    public AccountOwnerModel setCpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
@@ -60,7 +56,7 @@ public class UserModel {
         return email;
     }
 
-    public UserModel setEmail(String email) {
+    public AccountOwnerModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -69,26 +65,8 @@ public class UserModel {
         return cellPhoneNumber;
     }
 
-    public UserModel setCellPhoneNumber(String cellPhoneNumber) {
+    public AccountOwnerModel setCellPhoneNumber(String cellPhoneNumber) {
         this.cellPhoneNumber = cellPhoneNumber;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public UserModel setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public UserModel setActive(Boolean active) {
-        isActive = active;
         return this;
     }
 
@@ -96,7 +74,7 @@ public class UserModel {
         return insertedDate;
     }
 
-    public UserModel setInsertedDate(ZonedDateTime insertedDate) {
+    public AccountOwnerModel setInsertedDate(ZonedDateTime insertedDate) {
         this.insertedDate = insertedDate;
         return this;
     }
@@ -105,7 +83,7 @@ public class UserModel {
         return lastUpdatedDate;
     }
 
-    public UserModel setLastUpdatedDate(ZonedDateTime lastUpdatedDate) {
+    public AccountOwnerModel setLastUpdatedDate(ZonedDateTime lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
         return this;
     }
@@ -114,12 +92,12 @@ public class UserModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserModel userModel = (UserModel) o;
-        return Objects.equals(id, userModel.id) && Objects.equals(name, userModel.name) && Objects.equals(cpf, userModel.cpf) && Objects.equals(email, userModel.email) && Objects.equals(cellPhoneNumber, userModel.cellPhoneNumber) && Objects.equals(password, userModel.password) && Objects.equals(isActive, userModel.isActive) && Objects.equals(insertedDate, userModel.insertedDate) && Objects.equals(lastUpdatedDate, userModel.lastUpdatedDate);
+        AccountOwnerModel accountOwnerModel = (AccountOwnerModel) o;
+        return Objects.equals(id, accountOwnerModel.id) && Objects.equals(name, accountOwnerModel.name) && Objects.equals(cpf, accountOwnerModel.cpf) && Objects.equals(email, accountOwnerModel.email) && Objects.equals(cellPhoneNumber, accountOwnerModel.cellPhoneNumber) && Objects.equals(insertedDate, accountOwnerModel.insertedDate) && Objects.equals(lastUpdatedDate, accountOwnerModel.lastUpdatedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, cpf, email, cellPhoneNumber, password, isActive, insertedDate, lastUpdatedDate);
+        return Objects.hash(id, name, cpf, email, cellPhoneNumber, insertedDate, lastUpdatedDate);
     }
 }

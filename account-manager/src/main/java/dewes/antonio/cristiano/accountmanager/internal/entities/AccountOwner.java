@@ -3,15 +3,13 @@ package dewes.antonio.cristiano.accountmanager.internal.entities;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-public class User {
+public class AccountOwner {
 
     private Long id;
     private String name;
     private String cpf;
     private String email;
     private String cellPhoneNumber;
-    private String password;
-    private Boolean isActive;
     private ZonedDateTime insertedDate;
     private ZonedDateTime lastUpdatedDate;
 
@@ -19,7 +17,7 @@ public class User {
         return id;
     }
 
-    public User setId(Long id) {
+    public AccountOwner setId(Long id) {
         this.id = id;
         return this;
     }
@@ -28,7 +26,7 @@ public class User {
         return name;
     }
 
-    public User setName(String name) {
+    public AccountOwner setName(String name) {
         this.name = name;
         return this;
     }
@@ -37,7 +35,7 @@ public class User {
         return cpf;
     }
 
-    public User setCpf(String cpf) {
+    public AccountOwner setCpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
@@ -46,7 +44,7 @@ public class User {
         return email;
     }
 
-    public User setEmail(String email) {
+    public AccountOwner setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -55,26 +53,8 @@ public class User {
         return cellPhoneNumber;
     }
 
-    public User setCellPhoneNumber(String cellPhoneNumber) {
+    public AccountOwner setCellPhoneNumber(String cellPhoneNumber) {
         this.cellPhoneNumber = cellPhoneNumber;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public User setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public User setActive(Boolean active) {
-        isActive = active;
         return this;
     }
 
@@ -82,7 +62,7 @@ public class User {
         return insertedDate;
     }
 
-    public User setInsertedDate(ZonedDateTime insertedDate) {
+    public AccountOwner setInsertedDate(ZonedDateTime insertedDate) {
         this.insertedDate = insertedDate;
         return this;
     }
@@ -91,21 +71,22 @@ public class User {
         return lastUpdatedDate;
     }
 
-    public User setLastUpdatedDate(ZonedDateTime lastUpdatedDate) {
+    public AccountOwner setLastUpdatedDate(ZonedDateTime lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
         return this;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(cpf, user.cpf) && Objects.equals(email, user.email) && Objects.equals(cellPhoneNumber, user.cellPhoneNumber) && Objects.equals(password, user.password) && Objects.equals(isActive, user.isActive) && Objects.equals(insertedDate, user.insertedDate) && Objects.equals(lastUpdatedDate, user.lastUpdatedDate);
+        AccountOwner accountOwner = (AccountOwner) o;
+        return Objects.equals(id, accountOwner.id) && Objects.equals(name, accountOwner.name) && Objects.equals(cpf, accountOwner.cpf) && Objects.equals(email, accountOwner.email) && Objects.equals(cellPhoneNumber, accountOwner.cellPhoneNumber) && Objects.equals(insertedDate, accountOwner.insertedDate) && Objects.equals(lastUpdatedDate, accountOwner.lastUpdatedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, cpf, email, cellPhoneNumber, password, isActive, insertedDate, lastUpdatedDate);
+        return Objects.hash(id, name, cpf, email, cellPhoneNumber, insertedDate, lastUpdatedDate);
     }
 }

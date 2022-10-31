@@ -3,19 +3,35 @@ package dewes.antonio.cristiano.accountmanager.internal.entities;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Account {
 
     private Long id;
-    private User user;
+    private AccountOwner accountOwner;
+    private AccountType accountType;
     private Long number;
     private Long agency;
     private BigDecimal amount;
+    private String password;
     private ZonedDateTime createdDate;
     private ZonedDateTime lasUpdatedDate;
     private ZonedDateTime fishedDate;
-    private Boolean isActive;
+    private Boolean active;
     private String version;
+
+    public Account() {
+    }
+
+    public Account(AccountOwner accountOwner, Long agency, Long number, String password) {
+        this.accountOwner = accountOwner;
+        this.agency = agency;
+        this.number = number;
+        this.amount = BigDecimal.ZERO;
+        this.createdDate = ZonedDateTime.now();
+        this.active = true;
+        this.version = UUID.randomUUID().toString();
+    }
 
     public Long getId() {
         return id;
@@ -26,12 +42,21 @@ public class Account {
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public AccountOwner getAccountOwner() {
+        return accountOwner;
     }
 
-    public Account setUser(User user) {
-        this.user = user;
+    public Account setAccountOwner(AccountOwner accountOwner) {
+        this.accountOwner = accountOwner;
+        return this;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public Account setAccountType(AccountType accountType) {
+        this.accountType = accountType;
         return this;
     }
 
@@ -59,6 +84,15 @@ public class Account {
 
     public Account setAmount(BigDecimal amount) {
         this.amount = amount;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Account setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -90,11 +124,11 @@ public class Account {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public Account setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
         return this;
     }
 
@@ -112,11 +146,11 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(id, account.id) && Objects.equals(user, account.user) && Objects.equals(number, account.number) && Objects.equals(agency, account.agency) && Objects.equals(amount, account.amount) && Objects.equals(createdDate, account.createdDate) && Objects.equals(lasUpdatedDate, account.lasUpdatedDate) && Objects.equals(fishedDate, account.fishedDate) && Objects.equals(isActive, account.isActive) && Objects.equals(version, account.version);
+        return Objects.equals(id, account.id) && Objects.equals(accountOwner, account.accountOwner) && accountType == account.accountType && Objects.equals(number, account.number) && Objects.equals(agency, account.agency) && Objects.equals(amount, account.amount) && Objects.equals(password, account.password) && Objects.equals(createdDate, account.createdDate) && Objects.equals(lasUpdatedDate, account.lasUpdatedDate) && Objects.equals(fishedDate, account.fishedDate) && Objects.equals(active, account.active) && Objects.equals(version, account.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, number, agency, amount, createdDate, lasUpdatedDate, fishedDate, isActive, version);
+        return Objects.hash(id, accountOwner, accountType, number, agency, amount, password, createdDate, lasUpdatedDate, fishedDate, active, version);
     }
 }

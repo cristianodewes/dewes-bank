@@ -10,18 +10,22 @@ import java.util.Objects;
 public class AccountModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", updatable = false)
     private Long id;
     @OneToOne
     @JoinColumn(name = "USER_ID", nullable = false, updatable = false)
-    private UserModel user;
+    private AccountOwnerModel accountOwner;
+    @Column(name = "ACCOUNT_TYPE", nullable = false, updatable = false)
+    private AccountTypeModel accountType;
     @Column(name = "ACCOUNT_NUMBER", unique = true, nullable = false, updatable = false)
     private Long number;
     @Column(name = "AGENCY", nullable = false, updatable = false)
     private Long agency;
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     private ZonedDateTime createdDate;
     @Column(name = "LAST_UPDATED_DATE")
@@ -29,7 +33,7 @@ public class AccountModel {
     @Column(name = "FINISHED_DATE")
     private ZonedDateTime fishedDate;
     @Column(name = "IS_ACTIVE", nullable = false)
-    private Boolean isActive;
+    private Boolean active;
     @Column(name = "VERSION", nullable = false)
     private String version;
 
@@ -42,12 +46,21 @@ public class AccountModel {
         return this;
     }
 
-    public UserModel getUser() {
-        return user;
+    public AccountOwnerModel getAccountOwner() {
+        return accountOwner;
     }
 
-    public AccountModel setUser(UserModel user) {
-        this.user = user;
+    public AccountModel setAccountOwner(AccountOwnerModel accountOwner) {
+        this.accountOwner = accountOwner;
+        return this;
+    }
+
+    public AccountTypeModel getAccountType() {
+        return accountType;
+    }
+
+    public AccountModel setAccountType(AccountTypeModel accountType) {
+        this.accountType = accountType;
         return this;
     }
 
@@ -75,6 +88,15 @@ public class AccountModel {
 
     public AccountModel setAmount(BigDecimal amount) {
         this.amount = amount;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public AccountModel setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -106,11 +128,11 @@ public class AccountModel {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public AccountModel setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
         return this;
     }
 
@@ -127,12 +149,12 @@ public class AccountModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountModel account = (AccountModel) o;
-        return Objects.equals(id, account.id) && Objects.equals(user, account.user) && Objects.equals(number, account.number) && Objects.equals(agency, account.agency) && Objects.equals(amount, account.amount) && Objects.equals(createdDate, account.createdDate) && Objects.equals(lasUpdatedDate, account.lasUpdatedDate) && Objects.equals(fishedDate, account.fishedDate) && Objects.equals(isActive, account.isActive) && Objects.equals(version, account.version);
+        AccountModel that = (AccountModel) o;
+        return Objects.equals(id, that.id) && Objects.equals(accountOwner, that.accountOwner) && accountType == that.accountType && Objects.equals(number, that.number) && Objects.equals(agency, that.agency) && Objects.equals(amount, that.amount) && Objects.equals(password, that.password) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lasUpdatedDate, that.lasUpdatedDate) && Objects.equals(fishedDate, that.fishedDate) && Objects.equals(active, that.active) && Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, number, agency, amount, createdDate, lasUpdatedDate, fishedDate, isActive, version);
+        return Objects.hash(id, accountOwner, accountType, number, agency, amount, password, createdDate, lasUpdatedDate, fishedDate, active, version);
     }
 }
